@@ -6,9 +6,9 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ApiKeySecretAuthenticationConfigureExtensions
     {
-        public static IServiceCollection ConfigureApiKeySecretScheme( this IServiceCollection services, Action<ApiKeySecretAuthenticationOptions> configure )
+        public static IServiceCollection ConfigureApiKeySecretScheme( this IServiceCollection services, Action<ApiKeySecretAuthenticationSchemeOptions> configure )
         {
-            return services.Configure<ApiKeySecretAuthenticationOptions>( configure );
+            return services.Configure<ApiKeySecretAuthenticationSchemeOptions>( configure );
         }
     }
 }

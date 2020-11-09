@@ -11,13 +11,13 @@ using Microsoft.Extensions.Options;
 
 namespace Redpanda.OpenFaaS.Authentication
 {
-    public class ApiKeySecretAuthenticationHandler : AuthenticationHandler<ApiKeySecretAuthenticationOptions>
+    public class ApiKeySecretAuthenticationHandler : AuthenticationHandler<ApiKeySecretAuthenticationSchemeOptions>
     {
         private readonly string secretValue;
         private readonly string apiKeyHeader;
         private readonly string nameIdentifierHeader;
 
-        public ApiKeySecretAuthenticationHandler( IOptionsMonitor<ApiKeySecretAuthenticationOptions> optionsAccessor
+        public ApiKeySecretAuthenticationHandler( IOptionsMonitor<ApiKeySecretAuthenticationSchemeOptions> optionsAccessor
                 , ILoggerFactory loggerFactory
                 , UrlEncoder urlEncoder
                 , ISystemClock systemClock )

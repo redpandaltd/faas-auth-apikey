@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace Redpanda.OpenFaaS.Authentication
 {
-    public class ApiKeySecretAuthenticationOptions : AuthenticationSchemeOptions
+    public class ApiKeySecretAuthenticationSchemeOptions : AuthenticationSchemeOptions
     {
         [Required]
         public string SecretName { get; set; }
