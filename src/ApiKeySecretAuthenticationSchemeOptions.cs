@@ -7,7 +7,7 @@ namespace Redpanda.OpenFaaS.Authentication
     public class ApiKeySecretAuthenticationSchemeOptions : AuthenticationSchemeOptions
     {
         [Required]
-        public string SecretName { get; set; }
+        public string Secret { get; set; }
 
         [Required]
         public string ApiKeyHeader { get; set; }

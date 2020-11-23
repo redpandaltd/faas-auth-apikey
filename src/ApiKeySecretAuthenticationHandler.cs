@@ -23,16 +23,11 @@ namespace Redpanda.OpenFaaS.Authentication
                 , ISystemClock systemClock )
             : base( optionsAccessor, loggerFactory, urlEncoder, systemClock )
         {
-            apiKeyHeader = optionsAccessor.CurrentValue.ApiKeyHeader;
-            nameIdentifierHeader = optionsAccessor.CurrentValue.NameIdentifierHeader;
+            var options = optionsAccessor.CurrentValue;
 
-            var secretName = optionsAccessor.CurrentValue.SecretName;
-            secretValue = ReadSecret( secretName );
-
-            if ( string.IsNullOrEmpty( secretValue ) )
-            {
-                throw new FileNotFoundException( $"Unable to read '{secretName}' secret." );
-            }
+            apiKeyHeader = options.ApiKeyHeader;
+            nameIdentifierHeader = options.NameIdentifierHeader;
+            secretValue = options.Secret;
         }
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -59,20 +54,6 @@ namespace Redpanda.OpenFaaS.Authentication
             var ticket = new AuthenticationTicket( new ClaimsPrincipal( identity ), "openfaas-secret-api-key" );
 
             return Task.FromResult( AuthenticateResult.Success( ticket ) );
-        }
-
-        private string ReadSecret( string secretName )
-        {
-            var filePath = $"/var/openfaas/secrets/{secretName}";
-
-            if ( !File.Exists( filePath ) )
-            {
-                return ( null );
-            }
-
-            var buffer = File.ReadAllBytes( filePath );
-
-            return Encoding.UTF8.GetString( buffer );
         }
     }
 }

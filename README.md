@@ -1,13 +1,13 @@
-# OpenFaaS API Key Authentication Extension
+# OpenFaaS API Key Authentication
 
-This is part of OpenFaaS C# Template. It provides API Key authentication based on a secret.
+This is part of OpenFaaS ASPNET Functions. It provides API Key authentication based on a secret.
 
 ## Installing
 
 Add a package reference from NuGet
 
 ```
-dotnet add package Redpanda.OpenFaaS.Extensions.Authentication
+dotnet add package Redpanda.Extensions.OpenFaaS.ApiKeyAuth
 ```
 
 ## Usage
@@ -22,15 +22,15 @@ public void ConfigureServices( IServiceCollection services )
     // add your services here.
     services.AddApiKeySecretAuthentication( schemeOptions =>
     {
-        schemeOptions.SecretName = "my-secret";
+        schemeOptions.Secret = "secret-value";
         schemeOptions.ApiKeyHeader = "X-Api-Key";
     } );
 }
 ```
 
-The `SecretName` is the name of the secret where the expected API key is stored. The `X-Api-Key` is the name of the header where to look for the actual API key used by the client. If they match, `HttpContext.User` is populated with an authenticated identity.
+The `Secret` is the value of the secret where the expected API key is stored. The `X-Api-Key` is the name of the header where to look for the actual API key used by the client. If they match, `HttpContext.User` is populated with an authenticated identity.
 
-Next, we need to let the handler know that the function requires authorization. We do this by decorating the function with the `Authorize` attribute from ASPNET.
+If we want to restrict the calls to our function to authorized users only, we need to let the handler know that the function requires authorization. We do this by decorating the function with the `Authorize` attribute from ASPNET.
 
 ```csharp
 namespace OpenFaaS
@@ -43,7 +43,7 @@ namespace OpenFaaS
 }
 ```
 
-By doing this, all requests where the API key doesn't match the secret value will return a 401 response.
+By doing this, all requests without an identified user, will return a 401 response.
 
 ### User Id
 

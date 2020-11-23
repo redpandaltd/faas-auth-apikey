@@ -3,20 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Redpanda.OpenFaas</RootNamespace>
-    <PackageId>Redpanda.OpenFaaS.Extensions.Authentication</PackageId>
-    <Version>0.2</Version>
+    <PackageId>Redpanda.Extensions.OpenFaaS.ApiKeyAuth</PackageId>
+    <Version>0.3</Version>
     <Authors>Goncalo Oliveira</Authors>
     <Company>RedPanda Ltd</Company>
-    <Description>OpenFaaS csharp functions</Description>
-    <RepositoryUrl>https://github.com/redpandaltd/openfaas-authentication-extensions</RepositoryUrl>
+    <Description>OpenFaaS ASPNET Functions</Description>
+    <RepositoryUrl>https://github.com/redpandaltd/faas-auth-apikey</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.9" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
 </Project>
